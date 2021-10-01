@@ -19,8 +19,10 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     }
 )
 
+
 def setup_platform(hass, config, add_entities, discovery_info=None):
     add_entities([BleLight(config[CONF_NAME], config[CONF_MAC], config[CONF_DEVICE_ID])])
+
 
 class BleLight(LightEntity):
     def __init__(self, name, mac, mesh_id):
