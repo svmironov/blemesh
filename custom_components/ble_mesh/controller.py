@@ -13,16 +13,16 @@ class Device:
         self._mesh_id = mesh_id
 
     def turn_on(self):
-        self.execute(CMD_ON)
+        self.__execute(CMD_ON)
 
     def turn_off(self):
-        self.execute(CMD_OFF)
+        self.__execute(CMD_OFF)
 
-    def execute(self, cmd):
+    def __execute(self, cmd):
         attempts = 5
         for i in range(attempts):
             try:
-                self.send_сmd(cmd)
+                self.__send_сmd(cmd)
             except BTLEDisconnectError as e:
                 if i < attempts - 1:
                     continue
@@ -30,7 +30,7 @@ class Device:
                     raise
             break
 
-    def send_сmd(self, cmd):
+    def __send_сmd(self, cmd):
         frame = bytearray()
         frame.append(CMD_FUNCTION)
         frame.append(self._mesh_id)

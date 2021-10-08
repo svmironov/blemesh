@@ -49,4 +49,4 @@ class BleLight(LightEntity):
         self._state = False
 
     def update(self):
-        logging.info("Update device info")
+        pass
