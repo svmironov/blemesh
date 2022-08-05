@@ -16,6 +16,14 @@ Enable or disable power on pin E5 (OUT 1).
 
 First install HACS if you don't have it yet. Add https://github.com/svmironov/blemesh to HACS as user repository.
 
+For version >2022.6.7 need login to the homeassistant host via SSH and run commands
+    
+    # docker exec -it homeassistant apk add make pkgconfig build-base glib-dev
+    # docker exec -it homeassistant pip3 install bluepy
+
+Then inside the container add the required packages so pip will be able to build the module:
+# apk add make pkgconfig build-base glib-dev
+
 ## Configuration
 
     light:
