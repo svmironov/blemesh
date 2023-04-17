@@ -1,0 +1,20 @@
+author:
+  email: svmironov@users.noreply.github.com
+  homepage: https://github.com/svmironov/blemesh
+  name: svmironov
+description: BLE MESH LED component
+files:
+  - custom_components/ble_mesh/__init__.py
+  - custom_components/ble_mesh/light.py
+  - custom_components/ble_mesh/controller.py
+  - custom_components/ble_mesh/consts.py
+keywords:
+  - JDY-10
+  - BLE LED
+  - BLE MESH
+  - homeassistant
+  - home-assistant
+  - custom-component
+  - python
+license: MIT License
+name: ble_mesh

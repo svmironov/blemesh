@@ -1,7 +1,5 @@
-import time
-from bluepy import btle
-from bluepy.btle import BTLEDisconnectError
-from .const import CMD_FUNCTION, CMD_ON, CMD_OFF, CMD_GPIO_CONTROL, CMD_OUT_1, HANDLE_ID
+import pygatt
+from .const import CMD_FUNCTION, CMD_ON, CMD_OFF, CMD_GPIO_CONTROL, CMD_OUT_1, SERVICE_UUID
 
 
 class Device:
@@ -24,13 +22,10 @@ class Device:
         frame.append(CMD_OUT_1)
         frame.append(cmd)
 
-        successful = False
-        while successful is False:
-            try:
-                peripheral = btle.Peripheral(self._mac, btle.ADDR_TYPE_PUBLIC)
-                peripheral.writeCharacteristic(HANDLE_ID, frame, True)
-                peripheral.waitForNotifications(1.0)
-                successful = True
-            except BTLEDisconnectError as e:
-                time.sleep(0.5)
-        
+        adapter = pygatt.backends.GATTToolBackend()
+
+        adapter.start(reset_on_start=False)
+        device = adapter.connect(self._mac, address_type=pygatt.BLEAddressType.public)
+        characteristic = SERVICE_UUID
+        device.char_write(characteristic, frame, False)
+        adapter.stop()
